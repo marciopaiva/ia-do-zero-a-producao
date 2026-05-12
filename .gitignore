@@ -1,0 +1,29 @@
+# Build output
+output/
+*.pdf
+*.epub
+*.html
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Quarto
+_quarto/
+*.tex
+
+# Large data (use Git LFS if needed)
+*.csv
+*.parquet
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+*.log

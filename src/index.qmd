@@ -1,0 +1,76 @@
+---
+title: "IA do Zero à Produção"
+subtitle: "Guia completo para construir produtos com Inteligência Artificial"
+author: "Seu Nome"
+date: "2026-05-11"
+lang: "pt-BR"
+---
+
+# Introdução
+
+A Inteligência Artificial deixou de ser ficção científica e se tornou uma ferramenta prática para criar produtos escaláveis. Este ebook é um guia passo a passo para quem quer ir do absoluto zero — sem conhecimentos técnicos prévios — à implementação de um produto funcional em produção.
+
+Não é necessário ser programador, matemático ou cientista de dados. O que você precisa é de curiosidade, disciplina para seguir os passos e disposição para iterar com base no feedback real dos usuários.
+
+Ao final deste livro, você terá:
+
+- Um entendimento claro dos conceitos fundamentais de IA
+- Domínio prático das principais ferramentas disponíveis
+- Um projeto próprio construído e publicado
+- Habilidades para manter e evoluir seu produto em produção
+
+Vamos começar.
+
+\newpage
+
+# Sumário
+
+::: {.content-visible when-format="pdf"}
+
+## Parte I — Fundamentos
+
+1. [O que é Inteligência Artificial?](chapters/01-fundamentos.md#o-que-é-inteligência-artificial)
+2. [Histórico e evolução da IA](chapters/02-histórico.md#histórico-e-evolução-da-ia)
+3. [ML vs. IA generativa](chapters/03-ml-generative.md#aprendizado-de-máquina-vs-ia-generativa)
+4. [Ética, viés e responsabilidade](chapters/04-etica.md#ética-viés-e-responsabilidade)
+
+## Parte II — Ferramentas Essenciais
+
+5. Modelos de linguagem: ChatGPT, Claude, Gemini
+6. Geração de imagens: Midjourney, DALL-E, Stable Diffusion
+7. Assistentes de código: Copilot, Cursor, Claude Code
+8. Prompt engineering: técnicas práticas
+
+## Parte III — Construção do Produto
+
+9. Validação de ideia sem escrever código
+10. Definindo o MVP (Produto Mínimo Viável)
+11. Arquitetura de um produto de IA
+12. Desenvolvimento assisted by AI
+13. Testes e qualidade
+14. Deploy e infraestrutura
+
+## Parte IV — Operação em Produção
+
+15. Monitoramento e observabilidade
+16. Escalabilidade e performance
+17. Segurança e conformidade
+18. Custos e otimização
+19. Manutenção e evolução contínua
+
+## Parte V — Negócios e Distribuição
+
+20. Modelos de monetização
+21. Marketing e aquisição de usuários
+22. Suporte e atendimento
+23. Métricas e análise de dados
+24. Casos de estudo reais
+
+## Apêndices
+
+- [Glossário](chapters/apendices.md#apêndice-a---glossário-de-termos-técnicos)
+- [Recursos](chapters/apendices.md#apêndice-b---recursos-e-comunidade)
+- [Templates de prompts](chapters/apendices.md#apêndice-c---templates-de-prompts)
+- [Checklist](chapters/apendices.md#apêndice-d---checklist-de-lançamento)
+
+:::

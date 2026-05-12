@@ -1,0 +1,55 @@
+project:
+  type: book
+  output-dir: ../output
+  render:
+    - index.qmd
+    - chapters/
+
+book:
+  title: "IA: Do Zero à Produção"
+  subtitle: "Guia técnico para devs, gestores e entusiastas"
+  author: "Marcio Paiva Barbosa"
+  date: "2026"
+  repo-url: https://github.com/marciopaiva/ia-do-zero-a-producao
+  repo-branch: main
+  chapters:
+    - index.qmd
+    - chapters/01-fundamentos.md
+    - chapters/02-histórico.md
+    - chapters/03-ml-generative.md
+    - chapters/04-etica.md
+    - chapters/05-ferramentas.md
+    - chapters/06-desenvolvimento.md
+    - chapters/07-mlops.md
+    - chapters/08-negocios.md
+    - chapters/apendices.md
+  sidebar:
+    style: "docked"
+    search: true
+    collapse-level: 2
+
+format:
+  html:
+    lang: pt-BR
+    theme: cosmo
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+  pdf:
+    lang: pt-BR
+    documentclass: scrreprt
+    toc: true
+    number-sections: true
+    colorlinks: true
+    mainfont: "Latin Modern Roman"
+    monofont: "Latin Modern Mono"
+    papersize: a4
+  epub:
+    lang: pt-BR
+    toc: true
+    cover-image: assets/capa.png
+    stylesheet: assets/styles.css
+
+execute:
+  freeze: auto
+  cache: true

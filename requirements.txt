@@ -1,0 +1,15 @@
+# Dependencies for optional tooling
+# Not required for Quarto build, but useful for extensions
+
+# Jupyter for notebooks
+jupyterlab>=4.0.0
+ipykernel>=6.0.0
+
+# Data science (for future content)
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# LLM utilities (for testing)
+openai>=1.0.0
+anthropic>=0.8.0
