@@ -17,7 +17,7 @@ book:
     - chapters/01-fundamentos.md
     - chapters/02-como-ia-funciona.md
     - chapters/03-ecossistema.md
-    - chapters/04-etica.md
+    - chapters/04-engenharia-prompts.md
     - chapters/05-ml-vs-ia-generativa.md
     - chapters/06-construcao.md
     - chapters/07-producao.md

@@ -32,9 +32,9 @@ Vamos começar.
 1. [A Nova Era da Inteligência Artificial](chapters/01-fundamentos.md#capítulo-1-|-a-nova-era-da-inteligência-artificial)
 2. [Como a IA Realmente Funciona](chapters/02-como-ia-funciona.md#como-a-ia-realmente-funciona)
 3. [O Ecossistema Moderno da IA](chapters/03-ecossistema.md#capítulo-3-|-o-ecossistema-moderno-da-inteligência-artificial)
-4. [Ética, Viés e Responsabilidade](chapters/04-etica.md#ética-viés-e-responsabilidade)
+4. [Engenharia de Prompts e Contexto](chapters/04-engenharia-prompts.md#capítulo-4-|-engenharia-de-prompts-e-contexto)
 
-## Parte II — Paradigmas e Aplicações
+## Parte II — Paradigmas
 
 5. [Machine Learning vs IA Generativa](chapters/05-ml-vs-ia-generativa.md#aprendizado-de-máquina-vs-ia-generativa)
 
@@ -42,7 +42,7 @@ Vamos começar.
 
 6. [Desenvolvimento de Produtos com IA](chapters/06-construcao.md#capítulo-6-|-desenvolvimento-de-produtos-com-ia)
 
-## Parte IV — Operação em Produção
+## Parte IV — Operação
 
 7. [MLOps e Manutenção](chapters/07-producao.md#capítulo-7-|-mlops-e-manutenção)
 
