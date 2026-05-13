@@ -30,9 +30,9 @@ Vamos começar.
 ## Parte I — Fundamentos
 
 1. [O que é Inteligência Artificial?](chapters/01-fundamentos.md#o-que-é-inteligência-artificial)
-2. [Histórico e evolução da IA](chapters/02-histórico.md#histórico-e-evolução-da-ia)
-3. [ML vs. IA generativa](chapters/03-ml-generative.md#aprendizado-de-máquina-vs-ia-generativa)
-4. [Ética, viés e responsabilidade](chapters/04-etica.md#ética-viés-e-responsabilidade)
+2. [Como a IA Realmente Funciona](chapters/02-como-ia-funciona.md#como-a-ia-realmente-funciona)
+3. [ML vs IA Generativa](chapters/03-ml-vs-ia-generativa.md#aprendizado-de-máquina-vs-ia-generativa)
+4. [Ética, Viés e Responsabilidade](chapters/04-etica.md#ética-viés-e-responsabilidade)
 
 ## Parte II — Ferramentas Essenciais
 

@@ -15,8 +15,8 @@ book:
   chapters:
     - index.qmd
     - chapters/01-fundamentos.md
-    - chapters/02-histórico.md
-    - chapters/03-ml-generative.md
+    - chapters/02-como-ia-funciona.md
+    - chapters/03-ml-vs-ia-generativa.md
     - chapters/04-etica.md
     - chapters/05-ferramentas.md
     - chapters/06-desenvolvimento.md
