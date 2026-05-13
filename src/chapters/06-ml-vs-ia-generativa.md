@@ -1,4 +1,4 @@
-# Capítulo 5 — Machine Learning vs. IA Generativa
+# Capítulo 6 — Machine Learning vs. IA Generativa
 
 ## Objetivo do capítulo
 
@@ -6,7 +6,7 @@ Escolher a abordagem correta para seu problema, compreendendo os trade-offs entr
 
 ---
 
-## 5.1 Duas filosofias, dois resultados
+## 6.1 Duas filosofias, dois resultados
 
 ### Analogia: calculadora vs. parceiro criativo
 

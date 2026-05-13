@@ -34,21 +34,19 @@ Vamos começar.
 3. [O Ecossistema Moderno da IA](chapters/03-ecossistema.md#capítulo-3-|-o-ecossistema-moderno-da-inteligência-artificial)
 4. [Engenharia de Prompts e Contexto](chapters/04-engenharia-prompts.md#capítulo-4-|-engenharia-de-prompts-e-contexto)
 
-## Parte II — Paradigmas
+## Parte II — Construção Prática
 
-5. [Machine Learning vs IA Generativa](chapters/05-ml-vs-ia-generativa.md#aprendizado-de-máquina-vs-ia-generativa)
+5. [Construindo sua Primeira Aplicação com IA](chapters/05-construindo-primeira-app.md#capítulo-5---construindo-sua-primeira-aplicação-com-ia)
+6. [Machine Learning vs IA Generativa](chapters/06-ml-vs-ia-generativa.md#aprendizado-de-máquina-vs-ia-generativa)
+7. [Desenvolvimento de Produtos com IA](chapters/07-construcao.md#capítulo-7-|-desenvolvimento-de-produtos-com-ia)
 
-## Parte III — Construção
+## Parte III — Operação em Produção
 
-6. [Desenvolvimento de Produtos com IA](chapters/06-construcao.md#capítulo-6-|-desenvolvimento-de-produtos-com-ia)
+8. [MLOps e Manutenção](chapters/08-producao.md#capítulo-8-|-mlops-e-manutenção)
 
-## Parte IV — Operação
+## Parte IV — Negócios
 
-7. [MLOps e Manutenção](chapters/07-producao.md#capítulo-7-|-mlops-e-manutenção)
-
-## Parte V — Negócios
-
-8. [Estratégia e Casos Reais](chapters/08-negocios.md#capítulo-8-|-estratégia-e-casos-reais)
+9. [Estratégia e Casos Reais](chapters/09-negocios.md#capítulo-9-|-estratégia-e-casos-reais)
 
 ## Apêndices
 

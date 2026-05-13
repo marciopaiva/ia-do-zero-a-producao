@@ -1,4 +1,4 @@
-# Capítulo 8 — Estratégia e Casos Reais
+# Capítulo 9 — Estratégia e Casos Reais
 
 ## Objetivo do capítulo
 
@@ -6,7 +6,7 @@ Transformar seu produto de IA em um negócio sustentável: monetização, market
 
 ---
 
-## 8.1 Modelos de monetização
+## 9.1 Modelos de monetização
 
 ### Subscription (assinatura)
 
@@ -69,7 +69,7 @@ Misture: freemium → subscription → enterprise.
 
 ---
 
-## 8.2 Marketing e aquisição
+## 9.2 Marketing e aquisição
 
 ### Estratégias para produtos de IA
 
@@ -94,7 +94,7 @@ Misture: freemium → subscription → enterprise.
 
 ---
 
-## 8.3 Suporte e atendimento
+## 9.3 Suporte e atendimento
 
 ### Automação com IA
 
@@ -117,7 +117,7 @@ Misture: freemium → subscription → enterprise.
 
 ---
 
-## 8.4 Métricas e análise de dados
+## 9.4 Métricas e análise de dados
 
 ### KPIs de produto
 
@@ -142,7 +142,7 @@ Agrupe usuários por data de entrada e observe retenção ao longo do tempo. Iss
 
 ---
 
-## 8.5 Casos de estudo brasileiros
+## 9.5 Casos de estudo brasileiros
 
 ### Caso 1: Nubank — anti-fraude com ML
 
@@ -189,7 +189,7 @@ Agrupe usuários por data de entrada e observe retenção ao longo do tempo. Iss
 
 ---
 
-## 8.6 Lições aprendidas
+## 9.6 Lições aprendidas
 
 1. **Comece com problema, não tecnologia**
    - Não implemente IA porque está na moda. Implemente porque resolve um custo/ganho mensurável.

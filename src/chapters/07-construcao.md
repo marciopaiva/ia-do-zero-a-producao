@@ -1,4 +1,4 @@
-# Capítulo 6 — Desenvolvimento de Produtos com IA
+# Capítulo 7 — Desenvolvimento de Produtos com IA
 
 ## Objetivo do capítulo
 
@@ -6,7 +6,7 @@ Conduzir o leitor do zero ao produto funcional, cobrindo validação, definiçã
 
 ---
 
-## 6.1 Validação de ideia sem escrever código
+## 7.1 Validação de ideia sem escrever código
 
 ### Por que validar primeiro?
 
@@ -27,7 +27,7 @@ O maior erro de empreendedores e devs é construir antes de validar. IA facilita
 
 ---
 
-## 6.2 Definindo o MVP (Produto Mínimo Viável)
+## 7.2 Definindo o MVP (Produto Mínimo Viável)
 
 ### Princípio
 
@@ -48,7 +48,7 @@ Para produtos de IA, o MVP testa:
 
 ---
 
-## 6.3 Arquitetura de um produto de IA
+## 7.3 Arquitetura de um produto de IA
 
 ### Componentes essenciais
 
@@ -81,7 +81,7 @@ Respostas token a token (como ChatGPT). Melhor UX, mais complexo de implementar.
 
 ---
 
-## 6.4 Desenvolvimento assisted by AI
+## 7.4 Desenvolvimento assisted by AI
 
 ### O papel do desenvolvedor hoje
 
@@ -104,7 +104,7 @@ Ferramentas:
 
 ---
 
-## 6.5 Testes e qualidade
+## 7.5 Testes e qualidade
 
 ### Testes tradicionais
 
@@ -126,7 +126,7 @@ Ferramentas:
 
 ---
 
-## 6.6 Deploy e infraestrutura
+## 7.6 Deploy e infraestrutura
 
 ### Opções de hospedagem
 
@@ -157,7 +157,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ---
 
-## 6.7 Checklist de validação (Cap 6)
+## 7.7 Checklist de validação (Cap 6)
 
 - [ ] Validação de ideia concluída (entrevistas, landing page)
 - [ ] MVP definido (escopo claro)
