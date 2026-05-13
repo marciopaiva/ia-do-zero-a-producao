@@ -1,8 +1,8 @@
 ---
 title: "IA do Zero à Produção"
-subtitle: "Guia completo para construir produtos com Inteligência Artificial"
-author: "Seu Nome"
-date: "2026-05-11"
+subtitle: "Guia técnico para devs, gestores e entusiastas"
+author: "Marcio Paiva Barbosa"
+date: "2026"
 lang: "pt-BR"
 ---
 
@@ -29,48 +29,32 @@ Vamos começar.
 
 ## Parte I — Fundamentos
 
-1. [O que é Inteligência Artificial?](chapters/01-fundamentos.md#o-que-é-inteligência-artificial)
+1. [A Nova Era da Inteligência Artificial](chapters/01-fundamentos.md#capítulo-1-|-a-nova-era-da-inteligência-artificial)
 2. [Como a IA Realmente Funciona](chapters/02-como-ia-funciona.md#como-a-ia-realmente-funciona)
-3. [ML vs IA Generativa](chapters/03-ml-vs-ia-generativa.md#aprendizado-de-máquina-vs-ia-generativa)
+3. [O Ecossistema Moderno da IA](chapters/03-ecossistema.md#capítulo-3-|-o-ecossistema-moderno-da-inteligência-artificial)
 4. [Ética, Viés e Responsabilidade](chapters/04-etica.md#ética-viés-e-responsabilidade)
 
-## Parte II — Ferramentas Essenciais
+## Parte II — Paradigmas e Aplicações
 
-5. Modelos de linguagem: ChatGPT, Claude, Gemini
-6. Geração de imagens: Midjourney, DALL-E, Stable Diffusion
-7. Assistentes de código: Copilot, Cursor, Claude Code
-8. Prompt engineering: técnicas práticas
+5. [Machine Learning vs IA Generativa](chapters/05-ml-vs-ia-generativa.md#aprendizado-de-máquina-vs-ia-generativa)
 
-## Parte III — Construção do Produto
+## Parte III — Construção
 
-9. Validação de ideia sem escrever código
-10. Definindo o MVP (Produto Mínimo Viável)
-11. Arquitetura de um produto de IA
-12. Desenvolvimento assisted by AI
-13. Testes e qualidade
-14. Deploy e infraestrutura
+6. [Desenvolvimento de Produtos com IA](chapters/06-construcao.md#capítulo-6-|-desenvolvimento-de-produtos-com-ia)
 
 ## Parte IV — Operação em Produção
 
-15. Monitoramento e observabilidade
-16. Escalabilidade e performance
-17. Segurança e conformidade
-18. Custos e otimização
-19. Manutenção e evolução contínua
+7. [MLOps e Manutenção](chapters/07-producao.md#capítulo-7-|-mlops-e-manutenção)
 
-## Parte V — Negócios e Distribuição
+## Parte V — Negócios
 
-20. Modelos de monetização
-21. Marketing e aquisição de usuários
-22. Suporte e atendimento
-23. Métricas e análise de dados
-24. Casos de estudo reais
+8. [Estratégia e Casos Reais](chapters/08-negocios.md#capítulo-8-|-estratégia-e-casos-reais)
 
 ## Apêndices
 
 - [Glossário](chapters/apendices.md#apêndice-a---glossário-de-termos-técnicos)
 - [Recursos](chapters/apendices.md#apêndice-b---recursos-e-comunidade)
-- [Templates de prompts](chapters/apendices.md#apêndice-c---templates-de-prompts)
+- [Templates](chapters/apendices.md#apêndice-c---templates-de-prompts)
 - [Checklist](chapters/apendices.md#apêndice-d---checklist-de-lançamento)
 
 :::

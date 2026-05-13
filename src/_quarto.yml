@@ -16,11 +16,11 @@ book:
     - index.qmd
     - chapters/01-fundamentos.md
     - chapters/02-como-ia-funciona.md
-    - chapters/03-ml-vs-ia-generativa.md
+    - chapters/03-ecossistema.md
     - chapters/04-etica.md
-    - chapters/05-ferramentas.md
-    - chapters/06-desenvolvimento.md
-    - chapters/07-mlops.md
+    - chapters/05-ml-vs-ia-generativa.md
+    - chapters/06-construcao.md
+    - chapters/07-producao.md
     - chapters/08-negocios.md
     - chapters/apendices.md
   sidebar:

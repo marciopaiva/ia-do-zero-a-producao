@@ -1,4 +1,4 @@
-# Capítulo 3 — Aprendizado de Máquina vs. IA Generativa
+# Capítulo 5 — Machine Learning vs. IA Generativa
 
 ## Objetivo do capítulo
 
@@ -6,7 +6,7 @@ Escolher a abordagem correta para seu problema, compreendendo os trade-offs entr
 
 ---
 
-## 3.1 Duas filosofias, dois resultados
+## 5.1 Duas filosofias, dois resultados
 
 ### Analogia: calculadora vs. parceiro criativo
 
@@ -20,7 +20,7 @@ Ambas são úteis. A chave é saber quando usar cada uma.
 
 ---
 
-## 3.2 Machine Learning tradicional: previsão e classificação
+## 5.2 Machine Learning tradicional: previsão e classificação
 
 ### O que faz
 
@@ -48,7 +48,7 @@ ML tradicional aprende a mapear **entradas** para **saídas** com base em dados 
 
 ---
 
-## 3.3 IA Generativa: criação de conteúdo
+## 5.3 IA Generativa: criação de conteúdo
 
 ### O que faz
 
@@ -76,7 +76,7 @@ Gera **conteúdo novo** — texto, imagem, código, áudio — que se assemelha 
 
 ---
 
-## 3.4 Comparação lado a lado
+## 5.4 Comparação lado a lado
 
 | Critério | ML Tradicional | IA Generativa |
 |----------|----------------|---------------|
@@ -90,7 +90,7 @@ Gera **conteúdo novo** — texto, imagem, código, áudio — que se assemelha 
 
 ---
 
-## 3.5 Quando usar ML tradicional
+## 5.5 Quando usar ML tradicional
 
 ### Critérios
 
@@ -127,7 +127,7 @@ print(classification_report(y_test, model.predict(X_test)))
 
 ---
 
-## 3.6 Quando usar IA generativa
+## 5.6 Quando usar IA generativa
 
 ### Critérios
 
@@ -157,7 +157,7 @@ print(result[0]['generated_text'])
 
 ---
 
-## 3.7 O híbrido: RAG (Retrieval-Augmented Generation)
+## 5.7 O híbrido: RAG (Retrieval-Augmented Generation)
 
 ### O problema
 
@@ -213,7 +213,7 @@ print(resposta[0]['generated_text'])
 
 ---
 
-## 3.8 Fluxo de decisão: qual abordagem escolher?
+## 5.8 Fluxo de decisão: qual abordagem escolher?
 
 Pergunte-se nesta ordem:
 
