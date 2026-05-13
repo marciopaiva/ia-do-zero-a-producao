@@ -1,239 +1,442 @@
-# Capítulo 2: Histórico e evolução da IA
+# Capítulo 2 — Como a Inteligência Artificial Realmente Funciona
 
 ## Objetivo do capítulo
 
-Entender a história da IA não é só curiosidade — é uma ferramenta prática. Os ciclos de hype e desilusão ensinam quando uma tecnologia está madura ou ainda é experimental. Ao final, você vai conseguir separar o que é real hoje do que é promessa para o futuro.
+Explicar os fundamentos reais da IA moderna de forma acessível, mostrando o que acontece "por trás da mágica". Este capítulo elimina mitos, reduz hype e cria uma base sólida para entender LLMs, RAG, agentes e produção.
+
+A ideia central:
+
+> Você não precisa virar cientista de dados, mas precisa entender a mecânica básica.
 
 ---
 
-## A história como ciclo: invernos e verões
+## 2.1 A IA não "pensa" como humanos
 
-### Uma analogia: a IA como uma planta
+### O maior equívoco
 
-Pense na IA como uma planta que passa por ciclos:
-- **Verão**: sol forte, crescimento rápido, todo mundo nota
-- **Inverno**: frio, estagnação, alguns acreditam que morreu
-- Mas no inverno, as raízes crescem silenciosamente. No próximo verão, ela volta mais forte
+Quando vemos um modelo escrever um texto fluente ou gerar uma imagem realista, a impressão é que ele "entende" ou "pensa". Isso é uma ilusão.
 
-Cada "inverno da IA" enterrou técnicas obsoletas. Cada "verão" trouxe aplicações reais.
+**Modelos de IA não possuem:**
+- Consciência
+- Intenção
+- Compreensão semântica real
+- Conhecimento factual garantido
 
----
+Eles fazem algo muito mais simples (e poderoso): **prevêem a sequência mais provável de símbolos** (palavras, pixels, etc.) com base em padrões estatísticos aprendidos de trilhões de exemplos.
 
-## 1950–1970: Era da esperança
+### Analogia: autocompletion superavançado
 
-### O teste de Turing (1950)
+Pense em seu teclado de smartphone que sugere a próxima palavra. Agora imagine um sistema que:
 
-Alan Turing, matemático britânico, propôs um experimento mental: se um humano não consegue distinguir, por conversa, se está falando com outro humano ou com uma máquina, essa máquina pode ser considerada inteligente?
+- Foi treinado em quase toda a internet
+- Conhece relações entre conceitos
+- Pode adaptar o estilo
+- Gera múltiplas variações coerentes
 
-Essa pergunta abriu o campo. Não sobre construir máquinas conscientes, mas sobre **comportamento inteligente**.
+É isso que um LLM faz. Ele não "raciocina" — ele **completa**.
 
-### Conferência de Dartmouth (1956)
+### Implicação prática
 
-Foi aqui que o termo "Inteligência Artificial" foi cunhado. John McCarthy organizou um workshop de dois meses para explorar se máquinas poderiam aprender e usar linguagem.
+Como a IA não entende significado, ela pode:
+- Gerar texto muito plausível, mas factualmente errado (alucinação)
+- Ser inconsistente em respostas seguidas
+- "Inventar" citations, URLs, leis
+- Parafrasear sem capturar nuances
 
-O otimismo era enorme. Pesquisadores acreditavam que em 20 anos teríamos máquinas tão inteligentes quanto humanos. Eles estavam errados sobre o prazo, mas certos sobre a direção.
-
-### Primeiros sistemas
-
-**Logic Theorist (1956)** — de Newell e Simon — foi o primeiro programa que simulava resolução de problemas. Ele provedou teoremas do *Principia Mathematica* de Whitehead e Russell, às vezes de formas mais elegantes que os humanos.
-
-**ELIZA (1966)** — de Joseph Weizenbaum — simulava uma psicoterapeuta. Transformava frases do usuário em perguntas. As pessoas rapidamente percebiam que não era uma pessoa, mas o experimento mostrou como o **efeito Eliza** funciona: projetamos inteligência onde não há.
-
-**Shakey (1966)** — primeiro robô móvel que podia raciocinar sobre ações. Ele via o ambiente com câmeras, planejava rotas e executava. Lento, caro, mas revolucionário.
-
-### Por que o primeiro inverno (1974-1980)?
-
-Promessas não se cumpriam. Computadores eram fracos. Dados, inexistentes. Os sistemas especialistas eram caros e frágeis. Agências de financiamento (como DARPA) cortaram recursos. A IA entrou em hibernação.
+**Para você:** sempre valide o que a IA produz, especialmente em dados factuais.
 
 ---
 
-## 1980–1993: Sistemas especialistas e conexionismo
+## 2.2 O que são modelos de linguagem
 
-### A era das regras
+### Definição simples
 
-Enquanto a IA simbólica (baseada em lógica) patinava, surgiram os **sistemas especialistas**. A ideia: capturar o conhecimento de especialistas humanos em regras if-then.
+Um **modelo de linguagem** é uma função estatística que, dada uma sequência de texto, calcula a probabilidade do próximo token.
 
-**MYCIN** — sistema para diagnosticar infecções sanguíneas — era impressionante. Continha 600 regras escritas por médicos. Funcionava bem, mas:
-- Manter as regras era trabalhoso
-- Era frágil a situações fora do escopo
-- Não aprendia com novos casos
+Matematicamente:  
+P(next_token | previous_tokens)
 
-Empresas investiram bilhões em sistemas especialistas nos anos 80. Resultado: muitos projetos falharam. Segundo inverno.
+### Como eles são criados
 
-### Paralelamente: redes neurais ressurgem
+1. **Coleta de dados**: livros, artigos, wikis, código, fóruns — petabytes de texto
+2. **Treinamento**: a rede neural ajusta bilhões de parâmetros para prever a próxima palavra
+3. **Avaliação**: testes de qualidade, safety, bias
 
-Em 1986, Rumelhart, Hinton e Williams popularizaram o algoritmo **backpropagation** para treinar redes neurais multicamadas. Era a renascença dos connectionistas — mas o poder computacional ainda limitava. Só com GPUs, anos depois, isso decolou.
+Durante o treinamento, o modelo **não vê respostas**. Ele só vê dados brutos e aprende sozinho a identificar padrões.
 
----
+### O que o modelo realmente faz
 
-## 1997–2012: Era estatística
+- **Compressão de conhecimento**: armazena estatísticas de co-ocorrência de palavras
+- **Generalização**: aplica padrões vistos a situações novas
+- **Interpolação**: combina ideias de contextos diferentes
 
-### Deep Blue vs. Kasparov (1997)
-
-A IBM derrotou o campeão mundial de xadrez. Foi uma vitória da **força bruta**: o Deep Blue examinava 200 milhões de posições por segundo, combinada com regras humanas.
-
-A lição: em domínios bem definidos, regras + poder computacional podem superar humanos.
-
-### A revolução dos dados
-
-Nessa fase, o foco mudou para aprendizado de máquina estatístico:
-
-- **Support Vector Machines (SVM)**: eficazes com dados de médio porte
-- **Árvores de decisão e ensembles** (Random Forest, Gradient Boosting)
-- **Data mining** em bases de dados corporativas
-
-Aplicações práticas surgiram:
-- Reconhecimento de voz (Siri, 2011)
-- Filtros de spam (Gmail, 2004)
-- Recomendação (Amazon, Netflix)
-
-O padrão era: dados estruturados, algoritmos interpretáveis, resultados preditivos.
+**Exemplo:** o modelo aprende que "capital do Brasil" frequentemente aparece com "Brasília". Ele não sabe o que é Brasil ou capital — apenas que a sequência de tokens "Brasília" segue "capital do Brasil" com alta probabilidade.
 
 ---
 
-## 2012–presente: A revolução do deep learning
+## 2.3 Tokens: a unidade básica da IA
 
-### AlexNet e o tipping point (2012)
+### O que é um token?
 
-Na competição ImageNet, uma rede neural profunda chamada **AlexNet** (Krizhevsky, Sutskever, Hinton) reduziu a taxa de erro de 26% para 15% — uma mudança de 10 pontos percentuais, inédita.
+Token é a menor unidade que o modelo processa. Pode ser:
+- Uma palavra inteira (comum em português)
+- Parte de uma palavra (subpalavras)
+- Um caractere (em alguns modelos)
 
-Por que foi revolucionário?
-1. **GPU**: treinou em 2 GPUs NVIDIA, algo antes raro
-2. **ReLU**: função de ativação que evapora o problema do gradiente vanishing
-3. **Dropout**: regularização que evita overfitting
+Exemplo em português (modelo BPE):
 
-Essa vitória convenceu o mundo de que redes profundas funcionavam.
+| Texto | Tokens |
+|-------|--------|
+| "IA" | ["IA"] (1 token) |
+| "Inteligência Artificial" | ["Inteligência", " Artificial"] (2 tokens) |
+| "São Paulo" | ["São", " Paulo"] (2 tokens) |
+| Código: `def soma(a, b):` | ["def", " soma", "(", "a", ",", "b", "):"] (7 tokens) |
 
-### Transformers: a arquitetura que mudou tudo (2017)
+### Por que tokens importam?
 
-O artigo "Attention Is All You Need" (Vaswani et al., Google) introduziu o **Transformer** — arquitetura baseada em atenção (attention), não em RNNs ou CNNs.
+1. **Custo**: APIs cobram por token (ex: US$ 0.01 por 1K tokens de entrada, US$ 0.03 por 1K tokens de saída — GPT-4)
+2. **Contexto**: limites de contexto são medidos em tokens (ex: GPT-4 tem 128K tokens)
+3. **Performance**: mais tokens = mais lentidão e custo
 
-Por que importa?
-- Processa sequências em paralelo (não sequencial)
-- Contexto longo: captura relações entre palavras distantes
-- Escalável: funciona melhor quanto maior
+### Calcule seus tokens
 
-Isso viabilizou os **modelos de linguagem grandes (LLMs)**.
-
-### De BERT a ChatGPT (2018-2022)
-
-- **BERT** (Google, 2018): modelo bidirecional que entende contexto. Revolucionou NLP.
-- **GPT-2** (OpenAI, 2019): gerava texto coerente. Foi "liberado" gradualmente por preocupações de misuse.
-- **GPT-3** (2020): 175 bilhões de parâmetros. Mostrou que escala traz capacidades emergentes (few-shot learning).
-- **ChatGPT** (2022): fine-tuning com RLHF tornou o modelo útil e seguro. Democratizou o acesso.
-- **GPT-4, Claude 3, Gemini** (2023-2024): multimodais, mais precisos, maiores contextos.
-
-### Geração de imagens: GANs e difusão
-
-- **GANs** (Goodfellow, 2014): duas redes rivais (gerador e discriminador) criam imagens realistas.
-- **DALL-E 2** (2022), **Midjourney** (2022): geram imagens a partir de texto.
-- **Stable Diffusion** (2022): open-source, roda localmente.
-- **Sora** (2024): geração de vídeo.
-
----
-
-## Lições da história para gestores
-
-### Ciclo de hype
-
-1. **Início**: nova técnica (ex: Transformers) gera entusiasmo
-2. **Pico de expectativas**: todo mundo acha que vai revolucionar tudo
-3. **Desilusão**: limitações aparecem; projetos falham
-4. **Ascensão sólida**: casos de uso reais se consolidam
-5. **Produtividade**: a tecnologia se torna rotina
-
-Hoje estamos na fase de **ascensão sólida** da IA generativa. Alguns setores (marketing, suporte) já têm produtividade comprovada. Outros (medicina, jurídico) ainda estão na fase de validação.
-
-### O que mudou permanentemente
-
-- **Custo de desenvolvimento**: caiu drasticamente. Sem APIs, um projeto levaria meses. Com APIs, dias.
-- **Barreiras técnicas**: saber programar ainda ajuda, mas não é mais pré-requisito absoluto
-- **Velocidade de inovação**: um novo modelo a cada 3-6 meses
-
-### O que NÃO mudou
-
-- **Dados de qualidade**: continuam sendo o fator #1 de sucesso
-- **Alinhamento com negócio**: tecnologia sem problema claro não entrega valor
-- **Ética e governança**: IA não regula sozinha
-
----
-
-## Para desenvolvedores: evolução técnica
-
-### Do código tradicional ao prompt
-
-Em 2010, um projeto típico de IA envolvia:
-- Coletar dados → limpar → feature engineering → treinar modelo → deploy → monitorar
-
-Hoje:
-- Definir o problema → escrever um bom prompt → iterar → testing → deploy → monitoring
-
-A mudança não é trivial:
-- Antes: você construía o modelo
-- Hoje: você orquestra modelos existentes
-
-### Exemplo de evolução temporal
-
-**2015 (TensorFlow 1.x)**:
 ```python
-import tensorflow as tf
+from transformers import AutoTokenizer
 
-# Criar grafo computacional
-x = tf.placeholder(tf.float32, [None, 784])
-W = tf.Variable(tf.zeros([784, 10]))
-b = tf.Variable(tf.zeros([10]))
-y = tf.matmul(x, W) + b
+tokenizer = AutoTokenizer.from_pretrained("gpt2")
+texto = "Inteligência Artificial é o futuro."
+tokens = tokenizer.encode(texto)
+print(f"Texto: '{texto}'")
+print(f"Tokens: {len(tokens)} → {tokens}")
+print(f"Decodificado: {tokenizer.decode(tokens)}")
 ```
 
-**2024 (Hugging Face)**:
-```python
-from transformers import pipeline
+**Resultado aproximado:** 7 tokens.
 
-# Uma linha faz o trabalho pesado
-generator = pipeline("text-generation", model="gpt-4")
-resultado = generator("Explique IA em uma frase", max_length=30)
-```
-
-A produtividade explodiu. Os desafios mudaram: agora lidamos com custo por token, latência de API, quality control de geração.
+**Dica prática:** 1000 tokens ≈ 750 palavras em português.
 
 ---
 
-## Exercícios: reflita e pratique
+## 2.4 Como modelos aprendem padrões
+
+### Treinamento: ajuste de billions de parâmetros
+
+1. **Inicialização aleatória** — o modelo começa com pesos aleatórios
+2. **Forward pass** — processa um batch de texto, gera previsões
+3. **Cálculo de loss** — compara previsão com o que realmente veio a seguir
+4. **Backward pass** — ajusta pesos para reduzir erro (gradiente descendente)
+3. **Repete** — por trilhões de tokens
+
+O resultado: uma grande tabela de números (os parâmetros) que codifica estatísticas da linguagem.
+
+### O que é aprendido?
+
+O modelo adquire "conhecimento" distribuído pela rede:
+- Camadas iniciais: padrões locais (gramática, morfologia)
+- Camadas médias: sintaxe, entidades
+- Camadas finais: semântica, raciocínio
+
+### Fine-tuning: adaptando o modelo
+
+Após o pré-treinamento geral, podemos **sintonizar** o modelo para uma tarefa específica:
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer
+
+model_name = "gpt2"
+model = AutoModelForCausalLM.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+# Você fornece exemplos específicos (ex: e-mails profissionais)
+# O treinamento ajusta levemente os pesos
+# Resultado: modelo especializado, sem perder conhecimento geral
+```
+
+**Fine-tuning vs prompting:**
+- Prompting: você guia o modelo a cada interação (flexível, não custa treinar)
+- Fine-tuning: você altera o modelo permanentemente (caro, mas consistente)
+
+---
+
+## 2.5 O que são embeddings
+
+### Definição
+
+**Embeddings** são representações numéricas (vetores) que capturam o significado de um texto.
+
+Palavras ou frases semanticamente similares ficam próximas no espaço vetorial.
+
+### Analogia: mapa semântico
+
+Imagine um mapa onde:
+- "cachorro" e "gato" estão próximos (animais domésticos)
+- "carro" e "moto" estão próximos (veículos)
+- "carro" está longe de "banana"
+
+Esse mapa é criado automaticamente pelo modelo.
+
+### Como funcionam na prática
+
+```python
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+frases = [
+    "O gato está na casa",
+    "O felino está no lar",
+    "O carro está na garagem"
+]
+
+embeddings = model.encode(frases)
+
+# Similaridade entre frases
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+sim_12 = cosine_similarity([embeddings[0]], [embeddings[1]])[0][0]
+sim_13 = cosine_similarity([embeddings[0]], [embeddings[2]])[0][0]
+
+print(f"Similaridade 'gato' vs 'felino': {sim_12:.3f}")   # Alta (ex: 0.85)
+print(f"Similaridade 'gato' vs 'carro': {sim_13:.3f}")    # Baixa (ex: 0.15)
+```
+
+**Aplicações de embeddings:**
+- Busca semântica (não só palavras-chave)
+- Agrupamento (clustering) de documentos
+- Recomendação de conteúdo similar
+- Memória de agentes (RAG)
+
+---
+
+## 2.6 Contexto e memória
+
+### Janela de contexto
+
+É o número de tokens que o modelo "vê" de uma vez. Por exemplo, GPT-4: 128.000 tokens (~300 páginas).
+
+**Regra:** dentro da janela, o modelo pode referenciar qualquer coisa.
+
+**Problema:** quando a conversa ou documento excede o limite, o início é truncado (jogado fora).
+
+### Tipos de memória
+
+1. **Memória de curto prazo (contexto)** — o que está na janela atual
+2. **Memória de longo prazo (banco vetorial)** — informações armazenadas externamente, recuperadas por similaridade
+3. **Memória de sessão** — variáveis do código que persistem entre chamadas
+
+### Contexto vs. armazenamento
+
+O modelo **não lembra** de conversas passadas se saírem da janela. Para manter memória persistente, você precisa:
+- Armazenar embeddings de interações
+- Recuperar relevantes a cada nova pergunta (RAG)
+- Injetar no prompt atual
+
+---
+
+## 2.7 Por que IA alucina
+
+### O mecanismo
+
+O modelo gera a resposta mais provável dado o contexto. Se o contexto não contém informação verdadeira, ele **inventa** algo que soa plausível.
+
+**Exemplos reais:**
+- ChatGPT cita casos judiciais inexistentes
+- Claude inventa APIs que não existem
+- Bard atribui citações falsas
+
+### Por que acontece?
+
+1. **Treinamento em dados com erros** — a internet tem desinformação
+2. **Pressão para ser útil** — se não souber, preference gerar algo em vez de dizer "não sei"
+3. **Falta de grounding** — sem fontes verificáveis, o modelo preenche lacunas
+
+### Como mitigar
+
+- **RAG**: conecte o modelo a fontes confiáveis antes da geração
+- **Fact-checking automático**: valide afirmações contra conhecimento externo
+- **Prompting explícito**: "Se não souber, diga 'Não sei'"
+- **Human-in-the-loop**: revisão de outputs críticos
+
+---
+
+## 2.8 Temperatura, criatividade e precisão
+
+### O parâmetro temperatura
+
+Controla aleatoriedade da geração:
+
+| Temperatura | Comportamento | Use quando |
+|-------------|---------------|------------|
+| 0.0–0.3 | Determinístico, repetitivo | Código, fatos, Q&A |
+| 0.4–0.7 | Balanceado | Textos gerais, e-mails |
+| 0.8–1.2 | Criativo, variado | Brainstorming, histórias |
+
+**Exemplo:**
+```python
+import openai
+
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "Escreva um slogan para café"}],
+    temperature=0.9  # Mais criativo
+)
+```
+
+### Outros parâmetros
+
+- **top_p**: controle de diversidade via núcleo de probabilidade
+- **max_tokens**: limite de comprimento da resposta
+- **stop**: sequências que encerram geração
+
+---
+
+## 2.9 Custos computacionais da IA
+
+### De onde vêm os custos
+
+1. **Treinamento** — bilhões em GPUs por semanas (ex: GPT-4: ~US$ 100 milhões)
+2. **Inferência** — cada chamada gasta computação
+3. **Armazenamento** — embeddings, indexes, modelos (GBs–TBs)
+
+### Cálculo prático
+
+Para um chatbot com 1000 usuários/dia, média de 10 interações, 1000 tokens cada:
+
+- Tokens de entrada: 1000 × 10 × 1000 = 10M
+- Tokens de saída: 1000 × 10 × 500 = 5M
+- Custo (GPT-4): (10M/1K × US$ 0.03) + (5M/1K × US$ 0.06) = US$ 300 + US$ 300 = **US$ 600/mês**
+
+Cenário com 100.000 usuários: **US$ 60.000/mês**.
+
+### Estratégias de redução
+
+- Cache de respostas frequentes
+- Modelos menores para tarefas simples
+- Batches de requisições
+- Compressão de contexto
+- Escolha certa: GPT-4 para coisa difícil, modelo leve para coisa simples
+
+---
+
+## 2.10 O ciclo completo de uma requisição
+
+### Fluxo simplificado
+
+```text
+Usuário prompt
+    ↓
+Tokenização (texto → IDs numéricos)
+    ↓
+Embedding lookup (cada token vira vetor)
+    ↓
+Passagem pelo Transformer (camadas de atenção)
+    ↓
+Geração autoregressiva (um token de cada vez)
+    ↓
+Detokenização (IDs → texto)
+    ↓
+Resposta ao usuário
+```
+
+### Fluxo moderno com RAG
+
+```text
+Usuário pergunta
+    ↓
+Embedding da pergunta
+    ↓
+Busca em banco vetorial (similaridade)
+    ↓
+Recuperação de documentos relevantes
+    ↓
+Construção do prompt: (contexto + pergunta)
+    ↓
+Modelo de linguagem gera resposta
+    ↓
+Pós-processamento (formatação, validação)
+    ↓
+Resposta final
+```
+
+**Cada etapa tem custo e latência.**
+
+---
+
+## 2.11 Limitações reais da IA atual
+
+### O que a IA não faz bem
+
+- **Raciocínio matemático complexo** — pode errar contas simples
+- **Conhecimento factual atualizado** — cutoff de treinamento (ex: GPT-4 até 2023)
+- **Consistência longa** — esquece Details depois de muitas interações
+- **Entendimento de irony/sarcasmo**
+- **Cálculos precisos**
+- **Planejamento de longo prazo**
+
+### Segurança e riscos
+
+- **Prompt injection** — usuário engana o sistema
+- **Data leakage** — vazamento de informações sensíveis
+- **Bias amplification** — amplificação de vieses sociais
+- **Dependência excessiva** — humanos deixam de validar
+
+### A regra de ouro
+
+> IA é uma ferramenta, não uma solução autônoma.
+
+Use para:
+- Aumentar produtividade
+- Gerar ideias
+- Automatizar tarefas repetitivas
+
+Não use para:
+- Decisões críticas sem supervisão
+- Informações factuais sem verificação
+- Substituir julgamento humano
+
+---
+
+## Exercícios: solidifique o entendimento
 
 ### Nível 1 — conceitual
 
-1. Por que ocorreram "invernos da IA"? O que mudou que tornou 2024 diferente?
-2. Compare ELIZA (1966) e ChatGPT (2022). Qual a diferença técnica e qual a diferença percebida pelo usuário?
-3. Se AlexNet não tivesse vencido o ImageNet em 2012, a IA estaria onde está hoje?
+1. Explique com suas palavras por que a IA não "pensa" como humanos.
+2. Qual a diferença entre tokens e palavras? Dê um exemplo onde uma frase vira mais tokens que palavras.
+3. Por que embeddings são úteis para busca semântica?
 
 ### Nível 2 — técnico
 
-1. No Colab, carregue o dataset MNIST e treine uma CNN simples com Keras. Acurácia deve passar de 98%. Compare com uma rede fully connected simples.
-2. Implemente desde zero (numpy apenas) um classificador KNN para o Iris dataset. Meça o tempo de execução para diferentes valores de k.
-3. Use a API do OpenAI para gerar três versões da mesma pergunta: zero-shot, one-shot, few-shot. Discuta as diferenças.
+1. No Colab, use a biblioteca `transformers` para tokenizar um texto em português e conte os tokens.
+2. Gere embeddings para 5 frases sobre IA e calcule a matriz de similaridade. Qual par é mais similar?
+3. Experimente o mesmo prompt com temperatura 0.0 e 1.0. Compare a criatividade e consistência.
 
 ### Nível 3 — desafio
 
-1. Leia o artigo original do Transformer ("Attention is All You Need", 2017). Implemente um mecanismo de multi-head attention do zero usando apenas numpy.
-2. Escolha um benchmark clássico (por exemplo, GLUE para NLP). Pesquise a evolução dos scores de 2018 a 2024. O que isso diz sobre progresso?
-3. Crie uma linha do tempo interativa com Streamlit mostrando os principais modelos e datasets lançados desde 2010.
+1. Construa um sistema simples de busca semântica: dado um índice de documentos, recupere os mais relevantes para uma query usando embeddings.
+2. Implemente um detector de alucinação: dê um fato ao modelo, peça para gerar texto, e valide contra uma fonte confiável.
+3. Estime o custo mensal de um produto com N usuários, média de M interações, cada uma com P tokens de entrada e S tokens de saída. Crie uma calculadora.
 
 ---
 
 ## Checklist de validação
 
-- [ ] Consigo explicar para um leigo por que a IA "explodiu" nos últimos 10 anos
-- [ ] Sei diferenciar IA simbólica, estatística e generativa
-- [ ] Executei um exemplo de classificação com CNN no MNIST
-- [ ] Entendo, em alto nível, como o Transformer funciona
-- [ ] Consigo identificar quando uma novidade de IA é hype ou avanço real
+- [ ] Entendo que IA não pensa, apenas prevê padrões
+- [ ] Sei o que são tokens e como afetam custo/performance
+- [ ] Compreendo o conceito de embeddings e suas aplicações
+- [ ] Entendo o fluxo de uma requisição LLM
+- [ ] Sei explicar por que a IA alucina e como mitigar
+- [ ] Conheço os parâmetros que controlam geração (temperatura, top_p)
+- [ ] Consigo estimar o custo operacional de um sistema de IA
+- [ ] Identifiquei as limitações reais da IA atual
 
 ---
 
 ## Fontes consultadas
 
-- Russell, Stuart, e Peter Norvig. *Artificial Intelligence: A Modern Approach*. 4ª ed., Pearson, 2020.
-- Goodfellow, Ian, Yoshua Bengio, e Aaron Courville. *Deep Learning*. MIT Press, 2016.
-- Krizhevsky, Alex, Ilya Sutskever, e Geoffrey Hinton. "ImageNet Classification with Deep Convolutional Neural Networks". *NeurIPS*, 2012.
-- Vaswani, Ashish, et al. "Attention Is All You Need". *NeurIPS*, 2017.
-- "A Year in AI" — Stanford HAI Annual Reports, 2022–2024.
+- **Attention Is All You Need** — Vaswani et al., 2017 (arquitetura Transformer)
+- **Language Models are Few-Shot Learners** — Brown et al., 2020 (GPT-3)
+- **Embeddings from Language Models** — Pennington et al., 2014 (GloVe)
+- **OpenAI Cookbook** — https://cookbook.openai.com (cálculo de tokens, custos)
+- **Hugging Face Course** — https://huggingface.co/course (transformers, embeddings)
+- **Stanford CS224N** — Natural Language Processing with Deep Learning

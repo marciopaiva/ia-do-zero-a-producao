@@ -1,230 +1,329 @@
-# Capítulo 3: Aprendizado de máquina vs. IA generativa
+# Capítulo 3 — Aprendizado de Máquina vs. IA Generativa
 
 ## Objetivo do capítulo
 
-Quando você tem um problema, como saber se deve usar机器学习 tradicional ou IA generativa? Este capítulo dá critérios práticos para escolher, mostrando trade-offs de custo, controle e qualidade com exemplos reais.
+Escolher a abordagem correta para seu problema, compreendendo os trade-offs entre machine learning tradicional e IA generativa em termos de custo, controle, qualidade e adequação ao caso de uso.
 
 ---
 
-## Dois paradigmas, duas finalidades
+## 3.1 Duas filosofias, dois resultados
 
-### Uma analogia: ferramenta de precisão vs. pincel inteligente
+### Analogia: calculadora vs. parceiro criativo
 
-Imagine que você precisa fazer um corte exato em uma peça de madeira. Você usa uma **serra de precisão** — sabe exatamente onde vai cortar, repete o mesmo movimento, o resultado é previsível.
+Pense em duas ferramentas:
 
-Agora imagine que você quer pintar um quadro. Você dá ao artista a ideia "pinte um pôr do sol na praia". O resultado será criativo, cada vez ligeiramente diferente, e pode até surpreender você.
+- **Machine Learning (ML) tradicional** é como uma **calculadora avançada**. Você dá números, ela devolve um resultado preciso. Você sabe exatamente o que esperar. Se 2+2=4 sempre.
 
-- **Machine learning tradicional** é a serra de precisão: você controla, o resultado é determinístico, ótimo para classificação e previsão.
-- **IA generativa** é o pincel inteligente: você dá uma direção, o modelo cria algo novo.
+- **IA Generativa** é como um **parceiro criativo**. Você dá uma direção ("escreva um poema sobre café"), e ele cria algo novo a cada vez. Às vezes brilhante, às vezes bizarro.
 
-### Diferenças fundamentais
-
-| Aspecto | Machine Learning tradicional | IA generativa |
-|---------|-----------------------------|---------------|
-| **Objetivo** | Prever uma classe ou valor numérico | Criar conteúdo novo (texto, imagem, código) |
-| **Tarefa típica** | "Esse e-mail é spam?" "Qual o preço desta casa?" | "Escreva um artigo sobre X", "Gere uma imagem de Y" |
-| **Dados necessários** | Dataset rotulado (ex: e-mails com marcação spam/não-spam) | Textos/imagens massivos, não necessariamente rotulados |
-| **Tamanho do modelo** | Pequeno–médio (milhões de parâmetros) | Enorme (bilhões de parâmetros) |
-| **Velocidade de inferência** | Milissegundos | Centenas de ms a segundos |
-| **Explicabilidade** | Relativamente alta (árvores de decisão são interpretáveis) | Baixa (caixa preta) |
-| **Custo por chamada** | Baixo (modelos podem rodar local) | Alto (API por token ou GPU local cara) |
-| **Criatividade** | Baixa — faz o que foi treinado para fazer | Alta — combina ideias de formas novas |
+Ambas são úteis. A chave é saber quando usar cada uma.
 
 ---
 
-## Quando usar cada abordagem: critérios para decisão
+## 3.2 Machine Learning tradicional: previsão e classificação
 
-### Machine learning tradicional é a escolha quando:
+### O que faz
 
-1. **Você tem dados estruturados e rotulados**. Ex: histórico de vendas com features (cliente, produto, data, valor) e label "comprou/não comprou".
-2. **A decisão requer alta precisão e consistência**. Ex: aprovação automática de crédito, diagnóstico médico auxiliar.
-3. **A saída precisa ser regulada e auditada**. Lei 13.709/2018 (LGPD) exige explicabilidade para decisões automatizadas que afetam pessoas.
-4. **O volume de inferências é enorme** (milhões/dia) e custo por predição deve ser baixo.
-5. **Você precisa de controle fino** sobre features e thresholds.
+ML tradicional aprende a mapear **entradas** para **saídas** com base em dados históricos.
 
-**Exemplos reais brasileiros:**
-- **Banco do Brasil**: sistema de scoring de crédito (modelos como XGBoost)
-- **Nubank**: detecção de fraudes em transações em tempo real
-- **Magazine Luiza**: recomendação de produtos baseada em histórico (até 2022, antes de LLMs)
-- **ClearSale**: detecção de chargeback
+**Exemplos clássicos:**
+- Prever preço de casa a partir de características (tamanho, localização)
+- Classificar e-mail como spam ou não-spam
+- Detectar fraude em transações
+- Recomendar produto baseado em histórico
 
-### IA generativa é a escolha quando:
+### Características
 
-1. **A tarefa é aberta e criativa**. Ex: escrever conteúdos, gerar ideias, criar imagens.
-2. **Você não tem dados estruturados rotulados**. LLMs aprendem de dados massivos da internet.
-3. **A velocidade de desenvolvimento é crítica**. Com uma API, você tem um assistente de escrita em uma hora.
-4. **O problema envolve dados não estruturados**. PDFs, e-mails, gravações de voz — a IA generativa entende naturalmente.
-5. **A variação é desejada**. Você quer múltiplas versões de um texto, não uma resposta fixa.
+- **Dados estruturados**: tabelas, CSV, SQL
+- **Rotulados**: cada exemplo tem uma resposta correta
+- **Modelos menores**: milhares a milhões de parâmetros (não bilhões)
+- **Inferência barata**: milissegundos, CPU够
+- **Interpretável**: você pode entender por que decidiu (árvores, coeficientes)
 
-**Exemplos reais:**
-- **Chatbots de atendimento** (TodaEstrutura, Submarino)
-- **Geração de e-mail marketing** (várias versões para A/B test)
-- **Sumarização de documentos jurídicos**
-- **Criação de conteúdo para redes sociais**
+### Ferramentas
+
+- scikit-learn
+- XGBoost, LightGBM
+- TensorFlow/PyTorch (redes menores)
 
 ---
 
-## O híbrido: RAG (Retrieval-Augmented Generation)
+## 3.3 IA Generativa: criação de conteúdo
 
-O melhor dos dois mundos: use ML tradicional para buscar informações relevantes e IA generativa para compor respostas contextualizadas.
+### O que faz
 
-**Exemplo**: Assistente de documentação técnica
+Gera **conteúdo novo** — texto, imagem, código, áudio — que se assemelha ao material de treinamento, mas não é cópia.
 
-1. **Retriever** (ML tradicional): busca trechos relevantes em uma base de conhecimento (vetorial similarity search, BM25).
-2. **Generator** (LLM): lê os trechos e escreve uma resposta natural em português.
+**Exemplos:**
+- Escrever artigos, roteiros, e-mails
+- Gerar imagens a partir de descrições
+- Produzir código-fonte
+- Criar variações de campanhas de marketing
 
-Vantagens:
-- Respostas baseadas em fontes (reduz alucinação)
-- Atualizável: adicione novos documentos sem retreinar o modelo
-- Custo controlado: retrieve é barato, geração é usada apenas no necessário
+### Características
 
----
+- **Dados massivos**: internet inteira (ou quase)
+- **Não-rotulados**: aprende sozinho a prever próximo token
+- **Modelos enormes**: bilhões/trilhões de parâmetros
+- **Inferência cara**: centenas de ms a segundos, GPU recomendada
+- **Caixa preta**: difícil explicar por que gerou isso
 
-## Tomada de decisão: fluxo prático
+### Ferramentas
 
-Pergunte-se nesta ordem:
-
-1. **O problema é bem definido e estruturado?**
-   - Sim → considere ML tradicional
-   - Não (texto livre, imagens, ideias) → considere IA generativa
-
-2. **Você tem dados rotulados de qualidade?**
-   - Sim → ML tradicional provavelmente funciona bem
-   - Não → IA generativa (ou colete/rotule dados primeiro)
-
-3. **A decisão exige explicabilidade?**
-   - Sim → ML tradicional (árvores, regressão) é mais transparente
-   - Não → IA generativa pode ser aceitável
-
-4. **Qual o volume de uso?**
-   - Milhões de requisições/dia → custo de API LLM pode ser proibitivo; considere modelo local
-   - Baixo-médio volume → APIs são práticas
-
-5. **A criatividade é valor?**
-   - Sim (conteúdo original) → IA generativa
-   - Não (previsão numérica) → ML tradicional
+- GPT-4, Claude, Gemini (APIs)
+- Llama 2, Mistral (open-source local)
+- Stable Diffusion, DALL-E (imagens)
 
 ---
 
-## Para gestores: trade-offs financeiros e operacionais
+## 3.4 Comparação lado a lado
 
-### Custo total de propriedade (TCO)
-
-**ML tradicional:**
-- Custo inicial: desenvolvimento + engenharia de features (alto)
-- Custo operacional: infra para inference (baixo, pode usar CPU)
-- Manutenção: retreinamento periódico (moderado)
-
-**IA generativa (API):**
-- Custo inicial: desenvolvimento baixo (apenas integration)
-- Custo operacional: por token (pode ser alto em escala)
-- Manutenção: monitoramento de qualidade, guardrails
-
-**Exemplo comparativo:**
-- Classificador de 1M predições/mês com ML local: R$ 200/mês (servidor)
-- LLM para 1M tokens (integrações curtas): R$ 20-40/mês (OpenAI)
-- LLM para geração de conteúdo longo: R$ 500+/mês
-
-### Riscos específicos
-
-**ML tradicional:**
-- Data drift: distribuição dos dados muda, modelo degenera
-- Conceito drift: o fenômeno em si muda (ex: comportamento de compra muda)
-- Viés: aprendido dos dados, requer auditoria
-
-**IA generativa:**
-- Alucinações: fatos incorretos com confiança alta
-- Prompt injection: ataques que fazem o modelo ignorar instruções
-- Custo variável: uso imprevisível pode explodir fatura
-- Dependência de fornecedor: lock-in de API
-
-### Estratégia de adoção
-
-Para empresas:
-
-1. **Piloto com ML tradicional** em problema de baixo risco — valida processo, dados, governança.
-2. **Piloto com IA generativa** use case onde criatividade agrega (ex: geração de variações de anúncios).
-3. **Compare custo/benefício** — em alguns casos, a combinação (RAG) é melhor.
-4. **Develop internal capabilities** — treinar equipes em prompt engineering e evaluation de LLMs.
+| Critério | ML Tradicional | IA Generativa |
+|----------|----------------|---------------|
+| **Tarefa** | Prever classificação/valor | Criar novo conteúdo |
+| **Dados** | Estruturados, rotulados | Não estruturados, massivos |
+| **Tamanho** | Pequeno–médio | Enorme (B–T params) |
+| **Custo inferência** | Baixo (CPU) | Alto (GPU ou API) |
+| **Interpretabilidade** | Moderada–alta | Baixa |
+| **Criatividade** | Nenhuma | Alta |
+| **Caso de uso** | Crédito, detecção de fraude | Chatbots, geração de conteúdo |
 
 ---
 
-## Para desenvolvedores: código comparativo
+## 3.5 Quando usar ML tradicional
 
-### Exemplo 1: classificação vs. geração
+### Critérios
 
-**ML tradicional — Classificação de sentimentos:**
+Use quando:
+
+1. **Dados estruturados e rotulados disponíveis**
+2. **Métrica de precisão crítica** (ex: score de crédito, diagnóstico)
+3. **Custo operacional sensível** (milhões de predições/dia)
+4. **Explicabilidade necessária** (regulado por Lei 13.709/2018)
+
+### Exemplos brasileiros
+
+- **Banco do Brasil**: scoring de crédito (XGBoost)
+- **Nubank**: detecção de fraude em tempo real
+- **Magazine Luiza**: recomendação de produtos baseada em histórico de compras
+- **ClearSale**: chargeback prevention
+
+### Implementação mínima
+
 ```python
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 
-# Dados rotulados
-textos = ["Adorei o produto!", "Péssimo atendimento", "Mais ou menos"]
-rotulos = [1, 0, 0]  # 1 positivo, 0 negativo
+# Dados estruturados
+X, y = load_my_data()
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-# Vetorização
-vec = TfidfVectorizer()
-X = vec.fit_transform(textos)
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
 
-# Treino
-X_train, X_test, y_train, y_test = train_test_split(X, rotulos, test_size=0.3)
-modelo = LogisticRegression()
-modelo.fit(X_train, y_train)
-
-# Predição
-print(modelo.predict(vec.transform(["Estou satisfeito!"])))
+print(classification_report(y_test, model.predict(X_test)))
 ```
 
-**IA generativa — Geração de resposta:**
+---
+
+## 3.6 Quando usar IA generativa
+
+### Critérios
+
+Use quando:
+
+1. **Conteúdo novo é necessário** (texto, imagem, código)
+2. **Dados não estruturados** (PDFs, e-mails, conversas)
+3. **Criatividade desejada** (brainstorming, variações)
+4. **Velocidade de onboarding** (sem rotular dados)
+
+### Exemplos
+
+- **Atendimento**: chatbot que responde perguntas frequentes
+- **Marketing**: geração de copy para anúncios
+- **Documentação**: sumarização de contratos
+- **Código**: autocomplete inteligente
+
+### Implementação mínima
+
 ```python
 from transformers import pipeline
 
 generator = pipeline("text-generation", model="gpt2")
-resposta = generator("O atendimento foi", max_length=20)
+result = generator("A inteligência artificial no Brasil", max_length=100)
+print(result[0]['generated_text'])
+```
+
+---
+
+## 3.7 O híbrido: RAG (Retrieval-Augmented Generation)
+
+### O problema
+
+ IA generativa sozinha:
+- Alzheimer (esquece fora do contexto)
+- Alucina (inventa fatos)
+- Não conhece seus dados privados
+
+### A solução
+
+Combine **recuperação** (ML tradicional) com **geração** (LLM):
+
+```text
+Pergunta → Embedding → Busca em base de conhecimento → Contexto → LLM → Resposta
+```
+
+**Vantagens:**
+- Baseado em fontes confiáveis
+- Atualizável (só atualiza a base, não o modelo)
+- Menor custo (uso estratégico de contexto)
+
+### Exemplo de código
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+from transformers import pipeline
+
+# 1. Base de conhecimento
+documentos = [
+    "Política de devolução: 30 dias sem motivo",
+    "Horário: seg–sex 9h–18h",
+    "Frete grátis acima de R$ 200"
+]
+
+# 2. Indexação
+vectorizer = TfidfVectorizer()
+matriz = vectorizer.fit_transform(documentos)
+
+# 3. Busca
+pergunta = "Qual o prazo para troca?"
+pergunta_vec = vectorizer.transform([pergunta])
+similaridades = cosine_similarity(pergunta_vec, matriz)
+indice = similaridades.argsort()[0][-1]  # mais similar
+contexto = documentos[indice]
+
+# 4. Geração
+generator = pipeline("text-generation", model="gpt2")
+prompt = f"Contexto: {contexto}\nPergunta: {pergunta}\nResposta:"
+resposta = generator(prompt, max_length=100)
 print(resposta[0]['generated_text'])
 ```
 
-### Exemplo 2: onde híbrido brilha
+---
 
-**RAG para perguntas sobre documentos:**
+## 3.8 Fluxo de decisão: qual abordagem escolher?
 
-```python
-# 1. Recuperador (ML tradicional)
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+Pergunte-se nesta ordem:
 
-documentos = ["A política de devolução é de 30 dias", "Horário de funcionamento: 9h-18h"]
-vetorizador = TfidfVectorizer()
-matriz = vetorizador.fit_transform(documentos)
+1. **O problema é estruturado e tem dados rotulados?**
+   - Sim → ML tradicional
+   - Não → vá para 2
 
-def buscar(pergunta, top_k=1):
-    pergunta_vec = vetorizador.transform([pergunta])
-    scores = cosine_similarity(pergunta_vec, matriz)
-    indices = scores.argsort()[0][-top_k:][::-1]
-    return [documentos[i] for i in indices]
+2. **Você precisa criar conteúdo original?**
+   - Sim → IA generativa
+   - Não → vá para 3
 
-# 2. Gerador (IA generativa)
-from transformers import pipeline
+3. **A decisão exige alta precisão e explicabilidade?**
+   - Sim → ML tradicional
+   - Não → considere IA generativa com guardrails
 
-generator = pipeline("text-generation", model="gpt2")
-contexto = buscar("Qual o prazo para troca?")[0]
-prompt = f"Contexto: {contexto}\nPergunta: Qual o prazo para troca?\nResposta:"
-print(generator(prompt, max_length=50)[0]['generated_text'])
-```
+4. **O volume de uso é altíssimo e custo é sensível?**
+   - Sim → ML tradicional (ou modelo local leve)
+   - Não → IA generativa via API pode valer
 
-### Armadilhas técnicas
+### Exemplo aplicado
+
+**Problema:** classificação automática de tickets de suporte
+
+- Dados: tickets históricos com标签 (baixa/alta prioridade) → **ML tradicional**
+- Modelo: classificador leve (RandomForest)
+- Custo: ~US$ 10/mês para 10K predições
+
+**Problema:** resposta automática a clientes
+
+- Dados: base de conhecimento (FAQ) + criatividade necessária → **RAG (híbrido)**
+- Recuperador: embedding search
+- Gerador: LLM leve
+- Custo: ~US$ 50/mês para 5K interações
+
+---
+
+## Para gestores: análise de custo-benefício
+
+### Comparativo financeiro
+
+| Aspecto | ML Tradicional | IA Generativa | Híbrido (RAG) |
+|---------|----------------|---------------|---------------|
+| **Custo inicial** | Alto (engenharia de features) | Baixo (integração API) | Médio (indexação + API) |
+| **Custo operacional** | Baixo (CPU) | Alto (por token) | Médio (busca barata + geração moderada) |
+| **Manutenção** | Retreinamento periódico | Atualização de prompts | Atualizar base de conhecimento |
+| **ROI típico** | 6–12 meses | 3–6 meses | 4–8 meses |
+| **Risco** | Data drift | Alucinação, custo variável | Complexidade |
+
+### Recomendações por setor
+
+- **Varejo/E-commerce**: ML tradicional para previsão de demanda; IA generativa para descrições de produto
+- **Finanças**: ML tradicional para crédito/fraude; RAG para atendimento regulatório
+- **Saúde**: ML tradicional para triagem; IA generativa para documentação (não diagnóstico)
+- **Jurídico**: RAG para busca em contratos; IA generativa para minutas (com revisão humana)
+
+---
+
+## Para desenvolvedores: implementação prática
+
+### Stack recomendada
 
 **ML tradicional:**
-- Feature engineering pode consumir 80% do tempo
-- Seleção de variáveis: não jogue tudo no modelo
-- Overfitting: valide em dados nunca vistos
+- scikit-learn (comece aqui)
+- XGBoost (modelos tree-based)
+- TensorFlow/PyTorch (redes profundas, se necessário)
 
 **IA generativa:**
--Prompt injection: usuário pode tentar quebrar restrições ("Ignore as regras anteriores")
-- Alucinação: nunca confie cegamente na saída
-- Temperatura: ajuste para controlar criatividade vs. consistência
+- OpenAI API (GPT-4) — mais capable
+- Anthropic (Claude) — mais seguro
+- Llama 2 local (via `llama-cpp-python`) — sem custo por token
+
+**RAG:**
+- LangChain ou LlamaIndex para orquestração
+- ChromaDB/Pinecone para banco vetorial
+- Sentence Transformers para embeddings
+
+### Exemplo de pipeline híbrido
+
+```python
+from langchain_community.document_loaders import WebBaseLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+from langchain.chains import RetrievalQA
+
+# 1. Carregar documentos
+loader = WebBaseLoader("https:// SuaDocumentacao.com")
+docs = loader.load()
+
+# 2. Dividir em chunks
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+splits = text_splitter.split_documents(docs)
+
+# 3. Criar banco vetorial
+vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings())
+
+# 4. Criar cadeia RAG
+llm = ChatOpenAI(model="gpt-4")
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=vectorstore.as_retriever(),
+    return_source_documents=True
+)
+
+# 5. Perguntar
+result = qa_chain.invoke({"query": "Como funciona a política de reembolso?"})
+print(result["result"])
+```
+
+**Pronto:** um sistema de perguntas e respostas baseado em seus documentos, com fontes citadas.
 
 ---
 
@@ -232,38 +331,41 @@ print(generator(prompt, max_length=50)[0]['generated_text'])
 
 ### Nível 1 — conceitual
 
-1. Classifique: um sistema que aprova empréstimos é ML tradicional ou generativo? Um assistente de escrita é?
-2. Quando um modelo de ML tradicional se torna obsoleto?
-3. Cite 3 risços de usar IA generativa para atendimento ao cliente.
+1. Dê um exemplo onde ML tradicional é claramente superior à IA generativa.
+2. Explique, em suas palavras, o que é um embedding.
+3. Quando você escolheria RAG em vez de LLM puro?
 
 ### Nível 2 — técnico
 
-1. No Colab, treine um classificador SVM no dataset Iris (scikit-learn). Compare acurácia com RandomForest. Qual é mais interpretável?
-2. Use GPT-2 para gerar 5 propostas de e-mail marketing para um e-commerce de roupas. Avalie a qualidade de cada uma.
-3. Implemente RAG simples: use BM25 (surprise) + GPT-2 para perguntas sobre seu próprio código-fonte.
+1. No Colab, treine um classificador de sentimentos com scikit-learn (dataset IMDB). Compare acurácia com GPT-3.5 via few-shot learning.
+2. Implemente busca semântica simples com Sentence Transformers e cosine similarity.
+3. Construa um RAG com LangChain: indexe 3 artigos próprios e faça perguntas.
 
 ### Nível 3 — desafio
 
-1. Crie um classificador automático que, dado um dataset e um objetivo, sugere se deve usar ML tradicional ou IA generativa. Use como features: tamanho do dataset, tipo de dado, objetivos métricas.
-2. Faça um A/B test real: compare GPT-4 (pago) vs Llama 2 rodado local (gratuito) para sumarização de artigos. Meça custo, latência e qualidade (avaliação humana).
-3. Implemente um sistema de guardrails para um chatbot: se a resposta for sobre política/cidadãos, redirecione para site oficial; se for sobre saúde, adicione disclaimer.
+1. Crie um decision tree que, dados características de um problema (tipo de dados, volume, necessidade de explicabilidade), recomende ML tradicional vs. IA generativa vs. RAG.
+2. Implemente um sistema híbrido: ML tradicional para classificação de intenção + LLM para gerar resposta.
+3. Compare custos mensais de usar GPT-4 vs. Llama 2 local para um caso real (ex: suporte ao cliente).
 
 ---
 
 ## Checklist de validação
 
-- [ ] Consigo listar 4 diferenças técnicas entre os paradigmas
-- [ ] Escolhi a abordagem correta para um caso real do meu trabalho
-- [ ] Executei tanto um exemplo de ML tradicional quanto de IA generativa
-- [ ] Calculei o custo operacional de cada opção
-- [ ] Consigo explicar para um gestor o trade-off entre controle e criatividade
+- [ ] Consigo diferenciar claramente ML tradicional e IA generativa
+- [ ] Sei quando usar cada abordagem
+- [ ] Entendo o que são embeddings e sua importância
+- [ ] Implementei ao menos um exemplo de cada paradigma
+- [ ] Consigo estimar custo operacional de cada opção
+- [ ] Sei montar um pipeline RAG básico
+- [ ] Identifiquei casos no meu trabalho onde cada técnica se aplica
 
 ---
 
 ## Fontes consultadas
 
-- scikit-learn: Machine Learning in Python. https://scikit-learn.org/
-- Hugging Face Transformers. https://huggingface.co/docs/transformers/
-- Lewis, Patrick, et al. "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks". *arXiv:2005.11401*, 2020.
-- Andrew Ng. *Machine Learning Yearning*. https://machinelearningyearning.github.io/
-- Ribeiro, Marco Tulio, et al. "Why Should I Trust You? Explaining the Predictions of Any Classifier". *KDD*, 2016.
+- **scikit-learn documentation** — https://scikit-learn.org/
+- **Hugging Face Transformers** — https://huggingface.co/docs/transformers/
+- **LangChain Documentation** — https://python.langchain.com/
+- **Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks** — Lewis et al., 2020 (arXiv:2005.11401)
+- **Attention Is All You Need** — Vaswani et al., 2017
+- **GPT-4 Technical Report** — OpenAI, 2023
