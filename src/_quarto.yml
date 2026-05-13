@@ -19,10 +19,11 @@ book:
     - chapters/03-ecossistema.md
     - chapters/04-engenharia-prompts.md
     - chapters/05-construindo-primeira-app.md
-    - chapters/06-ml-vs-ia-generativa.md
-    - chapters/07-construcao.md
-    - chapters/08-producao.md
-    - chapters/09-negocios.md
+    - chapters/06-rag.md
+    - chapters/07-ml-vs-ia-generativa.md
+    - chapters/08-construcao.md
+    - chapters/09-producao.md
+    - chapters/10-negocios.md
     - chapters/apendices.md
   sidebar:
     style: "docked"

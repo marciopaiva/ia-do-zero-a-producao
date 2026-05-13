@@ -37,16 +37,17 @@ Vamos começar.
 ## Parte II — Construção Prática
 
 5. [Construindo sua Primeira Aplicação com IA](chapters/05-construindo-primeira-app.md#capítulo-5---construindo-sua-primeira-aplicação-com-ia)
-6. [Machine Learning vs IA Generativa](chapters/06-ml-vs-ia-generativa.md#aprendizado-de-máquina-vs-ia-generativa)
-7. [Desenvolvimento de Produtos com IA](chapters/07-construcao.md#capítulo-7-|-desenvolvimento-de-produtos-com-ia)
+6. [RAG: Fazendo a IA Trabalhar com Seus Dados](chapters/06-rag.md#capítulo-6---rag:-fazendo-a-ia-trabalhar-com-seus-dados)
+7. [Machine Learning vs IA Generativa](chapters/07-ml-vs-ia-generativa.md#aprendizado-de-máquina-vs-ia-generativa)
+8. [Desenvolvimento de Produtos com IA](chapters/08-construcao.md#capítulo-8-|-desenvolvimento-de-produtos-com-ia)
 
-## Parte III — Operação em Produção
+## Parte III — Operação
 
-8. [MLOps e Manutenção](chapters/08-producao.md#capítulo-8-|-mlops-e-manutenção)
+9. [MLOps e Manutenção](chapters/09-producao.md#capítulo-9-|-mlops-e-manutenção)
 
 ## Parte IV — Negócios
 
-9. [Estratégia e Casos Reais](chapters/09-negocios.md#capítulo-9-|-estratégia-e-casos-reais)
+10. [Estratégia e Casos Reais](chapters/10-negocios.md#capítulo-10-|-estratégia-e-casos-reais)
 
 ## Apêndices
 

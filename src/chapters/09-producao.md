@@ -1,4 +1,4 @@
-# Capítulo 8 — MLOps e Manutenção
+# Capítulo 9 — MLOps e Manutenção
 
 ## Objetivo do capítulo
 
@@ -6,7 +6,7 @@ Colocar o sistema em produção e mantê-lo funcionando: monitoramento, escalabi
 
 ---
 
-## 8.1 Monitoramento e observabilidade
+## 9.1 Monitoramento e observabilidade
 
 ### O que monitorar?
 
@@ -48,7 +48,7 @@ Colocar o sistema em produção e mantê-lo funcionando: monitoramento, escalabi
 
 ---
 
-## 8.2 Escalabilidade e performance
+## 9.2 Escalabilidade e performance
 
 ### Estratégias
 
@@ -67,7 +67,7 @@ Colocar o sistema em produção e mantê-lo funcionando: monitoramento, escalabi
 
 ---
 
-## 8.3 Segurança e conformidade
+## 9.3 Segurança e conformidade
 
 ### Ameaças
 
@@ -92,7 +92,7 @@ Colocar o sistema em produção e mantê-lo funcionando: monitoramento, escalabi
 
 ---
 
-## 8.4 Gestão de custos
+## 9.4 Gestão de custos
 
 ### Onde o dinheiro vai
 
@@ -115,7 +115,7 @@ Colocar o sistema em produção e mantê-lo funcionando: monitoramento, escalabi
 
 ---
 
-## 8.5 Manutenção e evolução contínua
+## 9.5 Manutenção e evolução contínua
 
 ### Ciclo de vida do produto de IA
 
@@ -134,7 +134,7 @@ Colocar o sistema em produção e mantê-lo funcionando: monitoramento, escalabi
 
 ---
 
-## 8.6 Disaster recovery
+## 9.6 Disaster recovery
 
 ### O que pode falhar?
 
